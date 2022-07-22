@@ -10,12 +10,6 @@ body {
   text-align: center;
 }
 
-.headerFooterFont {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 2rem;
-  line-height: 5rem;
-}
-
 .topBar {
   background-color: #fba92c;
   color: #000000;
@@ -24,6 +18,25 @@ body {
   border-color: black;
   padding-left: 5rem;
   white-space: pre-wrap;
+}
+
+.topBar:hover .bookButton {
+  color: #562cfb;
+}
+
+.bookButton {
+  color: black;
+}
+
+.headerText {
+  font-size: medium;
+  line-height: 1.5rem;
+}
+
+.headerFooterFont {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 2rem;
+  padding-top: 3rem; 
 }
 
 .footerBar {
@@ -86,6 +99,114 @@ body {
   padding: 1rem;
 }
 
-.bookButton:hover {
-  color:#562cfb;
+.input {
+  width: 98%;
+  background: transparent;
+  color:#9e9e9e;
+  border: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.inputTitle {
+  width: 97%;
+  background: transparent;
+  font-size: x-large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  word-wrap: break-word;
+  font-weight: bold;
+  border: 0;
+}
+
+.fa-floppy-disk {
+  color:#9e9e9e;
+  position: absolute;
+  bottom: 1.6rem;
+  right: 1rem;
+}
+
+.fa-floppy-disk:hover {
+  color: #562cfb;
+}
+
+.fa-trash-can {
+  color:#9e9e9e;
+  position: absolute;
+  bottom: 1.6rem;
+  right: 1rem;
+}
+
+.fa-trash-can:hover {
+  color: #562cfb;
+}
+
+.editSave {
+  color:#9e9e9e;
+  position: absolute;
+  bottom: 1.5rem;
+  right: 3rem;
+}
+
+.topicEdit {
+  color:#9e9e9e;
+  position: absolute;
+  bottom: 1.6rem;
+  right: 5rem;
+}
+
+.editSave:hover, .topicEdit:hover {
+  color: #562cfb;
+}
+
+.inputAfterText {
+  display: inline-table;
+}
+
+.inputLine{
+  display:flex;
+}
+.inputAfterText{
+  margin-left: 1rem;
+  width: 7rem;
+}
+
+.hvr-border-fade {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
+.hvr-border-fade:hover, .hvr-border-fade:focus, .hvr-border-fade:active {
+  box-shadow: inset 0 0 0 4px #2098D1, 0 0 1px rgba(0, 0, 0, 0);
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
+
+.noteButton {
+  padding-left: 1rem;
+}
+
+.finishedCard {
+  background-color: lightgray;
+}
+
+.finishedCardBorder {
+  border-color: lightgray;
+}
+
+.checkTick {
+  color:#9e9e9e;
+  position:absolute;
+  right: 0.5rem;
+  top: 1.5rem;
+}
+
+.checkTick:hover {
+  color: #562cfb;
 }
