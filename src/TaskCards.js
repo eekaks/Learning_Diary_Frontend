@@ -161,20 +161,36 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
         })
       }
 
-    const cardText = `${task.description}\n\nDeadline: ${new Date(task.deadline).toDateString()}\n\nPriority: ${task.priority}`
+    const chooseCardStyle = (prio) => {
+        switch(prio) {
+            case 1: {
+                return 'cardTop urgentPrio'
+            }
+            case 2: {
+                return 'cardTop normalPrio'
+            }
+            case 3: {
+                return 'cardTop lowPrio'
+            }
+            default: {
+                return 'cardTop'
+            }
+        }
+    }
+
+    const cardText = `${task.description}\n\nDeadline: ${new Date(task.deadline).toDateString()}`
 
     if (!editTask)
     {
     return (
         <div className='card'>
-            <div className='cardTop'>
+            <div className={chooseCardStyle(task.priority)}>
             <strong>{task.title}</strong>
             <i className='fa-solid fa-check fa-xl checkTick' onClick={handleCheckClick}></i>
             </div>
             <div className='cardBottom'>
             {cardText}
             </div>
-            <button type='button' className='noteButton hvr-border-fade'>See notes.</button>
             <i className='fa-solid fa-pen-to-square fa-2xl topicEdit' onClick={handleEditClick}></i>
             <i className='fa-solid fa-floppy-disk fa-2xl editSave' ></i>
             <i className='fa-solid fa-trash-can fa-2xl' onClick={handleDeleteClick} ></i>
@@ -198,7 +214,6 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
                     <input className='input inputAfterText' value={newPrio} onChange={handlePrioChange} />
                 </div>
             </div>
-            <button type='button' className='noteButton hvr-border-fade'>See notes.</button>
             <i className='fa-solid fa-pen-to-square fa-2xl topicEdit' onClick={handleEditClick}></i>
             <i className='fa-solid fa-floppy-disk fa-2xl editSave' onClick={handleSaveClick}></i>
             <i className='fa-solid fa-trash-can fa-2xl' onClick={handleDeleteClick} ></i>
@@ -209,7 +224,7 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
 
   const FinishedTaskCard = ({task, setTasks}) => {
 
-    const cardText = `${task.description}\n\nDeadline: ${new Date(task.deadline).toDateString()}\n\nPriority: ${task.priority}`
+    const cardText = `${task.description}\n\nDeadline: ${new Date(task.deadline).toDateString()}`
   
     const handleCheckClick = e => {
       e.stopPropagation()

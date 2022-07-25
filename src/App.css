@@ -205,8 +205,25 @@ body {
   position:absolute;
   right: 0.5rem;
   top: 1.5rem;
+  border-radius: 3%;
 }
 
 .checkTick:hover {
   color: #562cfb;
+}
+
+.urgentPrio {
+  background-color: #ff7700;
+  border-top-right-radius: 3%;
+  border-top-left-radius: 3%;
+}
+
+.normalPrio {
+  background-color: #fba92c;
+}
+
+.lowPrio {
+  background-color: #ffc979;
+  border-top-right-radius: 3%;
+  border-top-left-radius: 3%;
 }

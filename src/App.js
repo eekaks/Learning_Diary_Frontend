@@ -23,7 +23,7 @@ const CardGrid = ({topics, tasks, handleCardClick, topicToShow, setTopics, setTo
   {
     return (
       <>
-      {tasks.filter(task => task.topic === topicToShow.id && !task.done).map(task =>
+      {tasks.filter(task => task.topic === topicToShow.id && !task.done).sort((a, b) => { return a.priority - b.priority}).map(task =>
         <TaskCard key={task.id} task={task} tasks={tasks} setTasks={setTasks} topicToShow={topicToShow} />)}
       {tasks.filter(task => task.topic === topicToShow.id && task.done).map(task =>
         <FinishedTaskCard key={task.id} task={task} setTasks={setTasks} />)}
@@ -71,9 +71,16 @@ const App = () => {
 
   const handleBarClick = () => {setTopicToShow(null)}
 
+  let stats = {
+    topics: topics.length,
+    completedTopics: topics.filter(topic => !topic.inProgress).length,
+    tasks: tasks.length,
+    completedTasks: tasks.filter(task => task.done).length
+  }
+
   return (
     <div className='container'>
-      <TopBar topicToShow={topicToShow} handleBarClick={handleBarClick}/>
+      <TopBar topicToShow={topicToShow} handleBarClick={handleBarClick} stats={stats}/>
       <TopicBar topicToShow={topicToShow} handleBarClick={handleBarClick}/>
       <NewTopicCard topicToShow={topicToShow} setTopics={setTopics} topics={topics} />
       <NewTaskCard topicToShow={topicToShow} tasks={tasks} setTasks={setTasks} />
