@@ -2,14 +2,14 @@ import '../App.css';
 import { useState } from 'react';
 import taskService from '../services/taskService';
 import { handleCheckClick, handleDeleteClick } from './clickHandlers';
-import PropTypes, { array, func, object } from 'prop-types';
+import PropTypes from 'prop-types';
 
 const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
   
     const [newTitle, setNewTitle] = useState('Enter new task title')
     const [newDesc, setNewDesc] = useState('Enter description')
     const [newDL, setNewDL] = useState('')
-    const [newPrio, setNewPrio] = useState('Enter priority')
+    const [newPrio, setNewPrio] = useState(null)
   
     const handleTitleChange = (event) => {
       setNewTitle(event.target.value)
@@ -22,9 +22,9 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     const handleDLChange = (event) => {
       setNewDL(event.target.value)
     }
-  
-    const handlePrioChange = (event) => {
-      setNewPrio(event.target.value)
+
+    const handlePrioClick = (prioNumber) => {
+      setNewPrio(prioNumber)
     }
   
     const handleSaveClick = e => {
@@ -46,7 +46,7 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
       setNewTitle('Enter new task title')
       setNewDesc('Enter description')
       setNewDL('')
-      setNewPrio('Enter priority')
+      setNewPrio(null)
     }
   
     if (topicToShow === null)
@@ -65,7 +65,10 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
             <div>Choose deadline: </div>
             <input className='input inputAfterText' type='date' value={newDL} onChange={handleDLChange} />
           </div>
-          <input className='input' value={newPrio} onChange={handlePrioChange} />
+            <div className='prioChooseRow'>Choose priority: </div>
+              <div className={newPrio === 3 ? 'prioButton prioButtonPressed' : 'prioButton'} onClick={() => handlePrioClick(3)}>Low</div>
+              <div className={newPrio === 2 ? 'prioButton prioButtonPressed' : 'prioButton'} onClick={() => handlePrioClick(2)}>Normal</div>
+              <div className={newPrio === 1 ? 'prioButton prioButtonPressed' : 'prioButton'} onClick={() => handlePrioClick(1)}>High</div>
           <i className='fa-solid fa-floppy-disk fa-2xl' onClick={handleSaveClick}></i>
         </div>
       </div>
@@ -73,9 +76,9 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
   }
 
   NewTaskCard.propTypes = {
-    topicToShow: object,
-    tasks: array.isRequired,
-    setTasks: func.isRequired
+    topicToShow: PropTypes.object,
+    tasks: PropTypes.array.isRequired,
+    setTasks: PropTypes.func.isRequired
   }
   
   const TaskCard = ({task, tasks, setTasks, topicToShow}) => {
@@ -98,8 +101,8 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
         setNewDL(event.target.value)
     }
 
-    const handlePrioChange = (event) => {
-        setNewPrio(event.target.value)
+    const handlePrioClick = (prioNumber) => {
+      setNewPrio(prioNumber)
     }
     
     const handleEditClick = e => {
@@ -184,10 +187,10 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
                             <div>Choose deadline: </div>
                             <input className='input inputAfterText' type='date' value={newDL} onChange={handleDLChange} />
                         </div>
-                <div className='inputLine'>
-                    <div>Enter priority: </div>
-                    <input className='input inputAfterText' value={newPrio} onChange={handlePrioChange} />
-                </div>
+                        <div className='prioChooseRow'>Choose priority: </div>
+                          <div className={newPrio === 3 ? 'prioButton prioButtonPressed' : 'prioButton'} onClick={() => handlePrioClick(3)}>Low</div>
+                          <div className={newPrio === 2 ? 'prioButton prioButtonPressed' : 'prioButton'} onClick={() => handlePrioClick(2)}>Normal</div>
+                          <div className={newPrio === 1 ? 'prioButton prioButtonPressed' : 'prioButton'} onClick={() => handlePrioClick(1)}>High</div>
             </div>
             <i className='fa-solid fa-pen-to-square fa-2xl topicEdit' onClick={handleEditClick}></i>
             <i className='fa-solid fa-floppy-disk fa-2xl editSave' onClick={handleSaveClick}></i>
@@ -198,10 +201,10 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
   }
 
   TaskCard.propTypes = {
-    topicToShow: object.isRequired,
-    task: object.isRequired,
-    tasks: array.isRequired,
-    setTasks: func.isRequired
+    topicToShow: PropTypes.object.isRequired,
+    task: PropTypes.object.isRequired,
+    tasks: PropTypes.array.isRequired,
+    setTasks: PropTypes.func.isRequired
   }
 
   const FinishedTaskCard = ({task, setTasks}) => {

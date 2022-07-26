@@ -227,3 +227,27 @@ body {
   border-top-right-radius: 3%;
   border-top-left-radius: 3%;
 }
+
+.prioButton {
+  margin: 0.3rem;
+  background-color: #ffc979;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-width: 0.1rem;
+  border-radius: 10%;
+  display: inline-table;
+  padding: 0.3rem;
+  color: black;
+}
+
+.prioButton:hover {
+  background-color: #fba92c;
+  cursor: default;
+}
+
+.prioChooseRow {
+  display: inline-table;
+}
+
+.prioButtonPressed {
+  background-color: #fba92c;
+}
