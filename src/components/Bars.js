@@ -1,19 +1,26 @@
 import '../App.css';
+import PropTypes from 'prop-types';
 
-const TopBar = ({topicToShow, handleBarClick, stats}) =>  {
-    if (topicToShow === null)
-    {
-      return (
-        <div className='topBar' onClick={handleBarClick}>
-          <div className='headerFooterFont'><i className='fa-solid fa-book bookButton'></i> Learning Diary</div>
-          <div className='headerText'>
-            <div>You have completed {stats.completedTopics}/{stats.topics} topics.</div>
-            <div>You have completed {stats.completedTasks}/{stats.tasks} tasks.</div>
+  const TopBar = ({topicToShow, handleBarClick, stats}) =>  {
+      if (topicToShow === null)
+      {
+        return (
+          <div className='topBar' onClick={handleBarClick}>
+            <div className='headerFooterFont'><i className='fa-solid fa-book bookButton'></i> Learning Diary</div>
+            <div className='headerText'>
+              <div>You have completed {stats.completedTopics}/{stats.topics} topics.</div>
+              <div>You have completed {stats.completedTasks}/{stats.tasks} tasks.</div>
+            </div>
           </div>
-        </div>
-      )
-    }
-    return null
+        )
+      }
+      return null
+  }
+
+  TopBar.propTypes = {
+    topicToShow: PropTypes.object,
+    handleBarClick: PropTypes.func.isRequired,
+    stats: PropTypes.object.isRequired
   }
 
   const TopicBar = ({topicToShow, handleBarClick}) => {
@@ -30,6 +37,11 @@ const TopBar = ({topicToShow, handleBarClick, stats}) =>  {
         <div className='headerText'>{cardText}</div>
       </div>
     )
+  }
+
+  TopicBar.propTypes = {
+    topicToShow: PropTypes.object,
+    handleBarClick: PropTypes.func.isRequired,
   }
 
 export { TopBar, TopicBar };
