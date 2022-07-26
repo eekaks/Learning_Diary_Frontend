@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import topicService from './services/topicService';
 import taskService from './services/taskService';
 import noteService from './services/noteService';
-import { TopBar, TopicBar } from './Bars';
-import { TopicCard, NewTopicCard, FinishedTopicCard } from './TopicCards';
-import { TaskCard, NewTaskCard, FinishedTaskCard } from './TaskCards';
+import { TopBar, TopicBar } from './components/Bars';
+import { TopicCard, NewTopicCard, FinishedTopicCard } from './components/TopicCards';
+import { TaskCard, NewTaskCard, FinishedTaskCard } from './components/TaskCards';
 
 const CardGrid = ({topics, tasks, handleCardClick, topicToShow, setTopics, setTopicToShow, setTasks}) => {
   if (topicToShow === null)
