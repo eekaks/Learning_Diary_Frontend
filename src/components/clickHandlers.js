@@ -1,3 +1,13 @@
+const handleDeleteClick = (e, item, items, itemService, setItems) => {
+    e.stopPropagation()
+    const result = window.confirm(`Delete ${item.title} ?`)
+    if (result === true) {
+      itemService.remove(item.id)
+        .then(deletedItem => {
+        setItems(items.filter(oldItem => oldItem.id !== item.id))
+      })
+    }
+  }
 
 const handleCheckClick = (e, item, itemService, setItems) => {
     e.stopPropagation()
@@ -26,4 +36,4 @@ const handleCheckClick = (e, item, itemService, setItems) => {
     })
   }
 
-export { handleCheckClick }
+export { handleCheckClick, handleDeleteClick }

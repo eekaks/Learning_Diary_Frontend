@@ -1,7 +1,8 @@
 import '../App.css';
 import { useState } from 'react';
 import taskService from '../services/taskService';
-import { handleCheckClick } from './clickHandlers';
+import { handleCheckClick, handleDeleteClick } from './clickHandlers';
+import PropTypes, { array, func, object } from 'prop-types';
 
 const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
   
@@ -70,6 +71,12 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
       </div>
     )
   }
+
+  NewTaskCard.propTypes = {
+    topicToShow: object,
+    tasks: array.isRequired,
+    setTasks: func.isRequired
+  }
   
   const TaskCard = ({task, tasks, setTasks, topicToShow}) => {
 
@@ -94,17 +101,6 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     const handlePrioChange = (event) => {
         setNewPrio(event.target.value)
     }
-  
-    const handleDeleteClick = e => {
-        e.stopPropagation()
-        const result = window.confirm(`Delete ${task.title} ?`)
-        if (result === true) {
-          taskService.remove(task.id)
-            .then(deletedTask => {
-            setTasks(tasks.filter(oldTask => oldTask.id !== task.id))
-          })
-        }
-      }
     
     const handleEditClick = e => {
         e.stopPropagation()
@@ -172,7 +168,7 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
             </div>
             <i className='fa-solid fa-pen-to-square fa-2xl topicEdit' onClick={handleEditClick}></i>
             <i className='fa-solid fa-floppy-disk fa-2xl editSave' ></i>
-            <i className='fa-solid fa-trash-can fa-2xl' onClick={handleDeleteClick} ></i>
+            <i className='fa-solid fa-trash-can fa-2xl' onClick={(e) => {handleDeleteClick(e, task, tasks, taskService, setTasks)}}></i>
         </div>
         )
     }
@@ -199,6 +195,13 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
         </div>
         )
     }
+  }
+
+  TaskCard.propTypes = {
+    topicToShow: object.isRequired,
+    task: object.isRequired,
+    tasks: array.isRequired,
+    setTasks: func.isRequired
   }
 
   const FinishedTaskCard = ({task, setTasks}) => {

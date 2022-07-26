@@ -1,7 +1,7 @@
 import '../App.css';
 import { useState } from 'react';
 import topicService from '../services/topicService';
-import { handleCheckClick } from './clickHandlers';
+import { handleCheckClick, handleDeleteClick } from './clickHandlers';
 
 const NewTopicCard = ({topicToShow, setTopics, topics}) => {
 
@@ -97,17 +97,6 @@ const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
 
   const cardText = `${topic.description}\n\nStarted learning: ${new Date(topic.startLearningDate).toDateString()}\n\nEstimated time to master: ${topic.estimatedTimeToMaster} days\n\nSources: ${topic.source}`
 
-  const handleDeleteClick = e => {
-    e.stopPropagation()
-    const result = window.confirm(`Delete ${topic.title} ?`)
-    if (result === true) {
-      topicService.remove(topic.id)
-        .then(deletedTopic => {
-        setTopics(topics.filter(oldTopic => oldTopic.id !== topic.id))
-      })
-    }
-  }
-
   const handleEditClick = e => {
     e.stopPropagation()
     if (editTopic)
@@ -157,7 +146,7 @@ const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
         </div>
         <i className="fa-solid fa-pen-to-square fa-2xl topicEdit" onClick={handleEditClick}></i>
         <i className='fa-solid fa-floppy-disk fa-2xl editSave' onClick={handleSaveClick}></i>
-        <i className='fa-solid fa-trash-can fa-2xl' onClick={handleDeleteClick}></i>
+        <i className='fa-solid fa-trash-can fa-2xl' onClick={(e) => {handleDeleteClick(e, topic, topics, topicService, setTopics)}}></i>
       </div>
     )
   }
@@ -181,7 +170,7 @@ const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
         </div>
         <i className="fa-solid fa-pen-to-square fa-2xl topicEdit" onClick={handleEditClick}></i>
         <i className='fa-solid fa-floppy-disk fa-2xl editSave' onClick={handleSaveClick}></i>
-        <i className='fa-solid fa-trash-can fa-2xl' onClick={handleDeleteClick}></i>
+        <i className='fa-solid fa-trash-can fa-2xl' onClick={(e) => {handleDeleteClick(e, topic, topics, topicService, setTopics)}}></i>
       </div>
     )
   }
