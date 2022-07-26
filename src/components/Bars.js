@@ -1,13 +1,15 @@
 import '../App.css';
+import diaryLogo from './learningdiarylogo.png';
 import PropTypes from 'prop-types';
 
   const TopBar = ({topicToShow, handleBarClick, stats}) =>  {
       if (topicToShow === null)
       {
         return (
-          <div className='topBar' onClick={handleBarClick}>
-            <div className='headerFooterFont'><i className='fa-solid fa-book bookButton'></i> Learning Diary</div>
-            <div className='headerText'>
+          <div className='topBar topicBar' onClick={handleBarClick}>
+            <img src={diaryLogo} className='diaryLogo' alt='Learning diary'/>
+            {/* <div className='headerFooterFont'><i className='fa-solid fa-book bookButton'></i> Learning Diary</div> */}
+            <div className='landingHeaderText'>
               <div>You have completed {stats.completedTopics}/{stats.topics} topics.</div>
               <div>You have completed {stats.completedTasks}/{stats.tasks} tasks.</div>
             </div>
