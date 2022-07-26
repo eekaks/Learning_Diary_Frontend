@@ -1,6 +1,7 @@
 import '../App.css';
 import { useState } from 'react';
 import topicService from '../services/topicService';
+import { handleCheckClick } from './clickHandlers';
 
 const NewTopicCard = ({topicToShow, setTopics, topics}) => {
 
@@ -143,39 +144,13 @@ const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
     })
   }
 
-  const handleCheckClick = e => {
-    e.stopPropagation()
-    const id = topic.id
-    const completedDate = topic.inProgress === false ? null : new Date()
-    const timeSpent = topic.inProgress === false ? 0 : Math.floor((new Date().getTime() - new Date(topic.startLearningDate).getTime()) / 86400000)
-
-    const updatedTopic = {
-      id: topic.id,
-      title: topic.title,
-      description: topic.description,
-      estimatedTimeToMaster: topic.estimatedTimeToMaster,
-      timeSpent: timeSpent,
-      source: topic.source,
-      startLearningDate: topic.startLearningDate,
-      inProgress: !topic.inProgress,
-      completionDate: completedDate
-    }
-    
-    topicService.update(id, updatedTopic).then(returnedTopic => {
-      topicService.getAll()
-      .then(topics => {
-        setTopics(topics)
-      })
-    })
-  }
-
   if (!editTopic)
   {
     return (
       <div className='card' onClick={() => handleCardClick(topic)}>
         <div className='cardTop'>
           <strong>{topic.title}</strong>
-          <i className="fa-solid fa-check fa-xl checkTick" onClick={handleCheckClick}></i>
+          <i className="fa-solid fa-check fa-xl checkTick" onClick={(e) => {handleCheckClick(e, topic, topicService, setTopics)}}></i>
         </div>
         <div className='cardBottom'>
           {cardText}
@@ -216,37 +191,11 @@ const FinishedTopicCard = ({topic, setTopics}) => {
 
   const cardText = `${topic.description}\n\nStarted learning: ${new Date(topic.startLearningDate).toDateString()}\n\nTime spent: ${topic.timeSpent} days\n\nSources: ${topic.source}`
 
-  const handleCheckClick = e => {
-    e.stopPropagation()
-    const id = topic.id
-    const completedDate = topic.inProgress === false ? null : new Date()
-    const timeSpent = topic.inProgress === false ? 0 : Math.floor((new Date().getTime() - new Date(topic.startLearningDate).getTime()) / 86400000)
-
-    const updatedTopic = {
-      id: topic.id,
-      title: topic.title,
-      description: topic.description,
-      estimatedTimeToMaster: topic.estimatedTimeToMaster,
-      timeSpent: timeSpent,
-      source: topic.source,
-      startLearningDate: topic.startLearningDate,
-      inProgress: !topic.inProgress,
-      completionDate: completedDate
-    }
-    
-    topicService.update(id, updatedTopic).then(returnedTopic => {
-      topicService.getAll()
-      .then(topics => {
-        setTopics(topics)
-      })
-    })
-  }
-
   return (
     <div className='card finishedCardBorder'>
       <div className='cardTop finishedCard'>
         <strong>{topic.title}</strong>
-        <i className="fa-solid fa-check fa-xl checkTick" onClick={handleCheckClick}></i>
+        <i className="fa-solid fa-check fa-xl checkTick" onClick={(e) => {handleCheckClick(e, topic, topicService, setTopics)}}></i>
       </div>
       <div className='cardBottom'>
         {cardText}
