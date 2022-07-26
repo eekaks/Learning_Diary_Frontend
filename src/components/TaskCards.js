@@ -1,6 +1,7 @@
 import '../App.css';
 import { useState } from 'react';
 import taskService from '../services/taskService';
+import { handleCheckClick } from './clickHandlers';
 
 const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
   
@@ -138,28 +139,6 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
           })
         })
       }
-    
-    const handleCheckClick = e => {
-        e.stopPropagation()
-        const id = task.id
-    
-        const updatedTask = {
-          id: task.id,
-          topic: task.topic,
-          title: task.title,
-          description: task.description,
-          deadline: task.deadline,
-          priority: task.priority,
-          done: !task.done
-        }
-        
-        taskService.update(id, updatedTask).then(returnedTask => {
-          taskService.getAll()
-          .then(tasks => {
-            setTasks(tasks)
-          })
-        })
-      }
 
     const chooseCardStyle = (prio) => {
         switch(prio) {
@@ -186,7 +165,7 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
         <div className='card'>
             <div className={chooseCardStyle(task.priority)}>
             <strong>{task.title}</strong>
-            <i className='fa-solid fa-check fa-xl checkTick' onClick={handleCheckClick}></i>
+            <i className='fa-solid fa-check fa-xl checkTick' onClick={(e) => {handleCheckClick(e, task, taskService, setTasks)}}></i>
             </div>
             <div className='cardBottom'>
             {cardText}
@@ -226,33 +205,11 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
 
     const cardText = `${task.description}\n\nDeadline: ${new Date(task.deadline).toDateString()}`
   
-    const handleCheckClick = e => {
-      e.stopPropagation()
-      const id = task.id
-      
-      const updatedTask = {
-        id: task.id,
-        topic: task.topic,
-        title: task.title,
-        description: task.description,
-        deadline: task.deadline,
-        priority: task.priority,
-        done: !task.done        
-      }
-      
-      taskService.update(id, updatedTask).then(returnedTask => {
-        taskService.getAll()
-        .then(tasks => {
-          setTasks(tasks)
-        })
-      })
-    }
-  
     return (
       <div className='card finishedCardBorder'>
         <div className='cardTop finishedCard'>
           <strong>{task.title}</strong>
-          <i className="fa-solid fa-check fa-xl checkTick" onClick={handleCheckClick}></i>
+          <i className="fa-solid fa-check fa-xl checkTick" onClick={(e) => {handleCheckClick(e, task, taskService, setTasks)}}></i>
         </div>
         <div className='cardBottom'>
           {cardText}
