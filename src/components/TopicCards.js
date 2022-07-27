@@ -29,26 +29,51 @@ const NewTopicCard = ({topicToShow, setTopics, topics}) => {
 
   const handleSaveClick = e => {
     e.stopPropagation()
-    const newTopic = {
-      id: 0,
-      title: newTitle,
-      description: newDesc,
-      estimatedTimeToMaster: parseInt(newEstimate),
-      timeSpent: 0,
-      source: newSource,
-      startLearningDate: new Date(),
-      inProgress: true,
-      completionDate: null
+
+    const parsed = parseFloat(newEstimate)
+
+    if (newTitle === 'Enter new topic title')
+    {
+      window.alert('Enter a title')
     }
-
-    topicService.create(newTopic).then(returnedTopic => {
-      setTopics(topics.concat(returnedTopic))
-    })
-
-    setNewTitle('Enter new topic title')
-    setNewDesc('Enter description')
-    setNewEstimate('Enter estimated time to master')
-    setNewSource('Enter sources')
+    else if (newDesc === 'Enter description')
+    {
+      window.alert('Enter a description')
+    }
+    else if (newEstimate === 'Enter estimated time to master')
+    {
+      window.alert('Enter an estimated time to master')
+    }
+    else if (!Number.isInteger(parsed))
+    {
+      window.alert('Enter an integer number as estimate')
+    }
+    else if (newSource === 'Enter sources')
+    {
+      window.alert('Enter sources or leave empty')
+    }
+    else 
+    {
+      const newTopic = {
+        id: 0,
+        title: newTitle,
+        description: newDesc,
+        estimatedTimeToMaster: parseInt(newEstimate),
+        timeSpent: 0,
+        source: newSource,
+        startLearningDate: new Date(),
+        inProgress: true,
+        completionDate: null
+      }
+  
+      topicService.create(newTopic).then(returnedTopic => {
+        setTopics(topics.concat(returnedTopic))
+      })
+      setNewTitle('Enter new topic title')
+      setNewDesc('Enter description')
+      setNewEstimate('Enter estimated time to master')
+      setNewSource('Enter sources')
+    }
   }
 
   if (topicToShow !== null)

@@ -29,24 +29,44 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
   
     const handleSaveClick = e => {
       e.stopPropagation()
-      const newTask = {
-        id: 0,
-        topic: topicToShow.id,
-        title: newTitle,
-        description: newDesc,
-        deadline: newDL,
-        priority: parseInt(newPrio),
-        done: false
+
+      if (newTitle === 'Enter new task title')
+      {
+        window.alert('Enter a title')
       }
-  
-      taskService.create(newTask).then(returnedTask => {
-        setTasks(tasks.concat(returnedTask))
-      })
-  
-      setNewTitle('Enter new task title')
-      setNewDesc('Enter description')
-      setNewDL('')
-      setNewPrio(null)
+      else if (newDesc === 'Enter description')
+      {
+        window.alert('Enter a description')
+      }
+      else if (newDL === '')
+      {
+        window.alert('Choose a deadline')
+      }
+      else if (newPrio === null)
+      {
+        window.alert('Choose a priority')
+      }
+      else
+      {
+        const newTask = {
+          id: 0,
+          topic: topicToShow.id,
+          title: newTitle,
+          description: newDesc,
+          deadline: newDL,
+          priority: parseInt(newPrio),
+          done: false
+        }
+    
+        taskService.create(newTask).then(returnedTask => {
+          setTasks(tasks.concat(returnedTask))
+        })
+    
+        setNewTitle('Enter new task title')
+        setNewDesc('Enter description')
+        setNewDL('')
+        setNewPrio(null)
+      }
     }
   
     if (topicToShow === null)
