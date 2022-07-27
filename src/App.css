@@ -217,7 +217,7 @@ body {
 }
 
 .urgentPrio {
-  background-color: #ff7700;
+  background-color: #ff4000;
   border-top-right-radius: 3%;
   border-top-left-radius: 3%;
 }
@@ -227,7 +227,7 @@ body {
 }
 
 .lowPrio {
-  background-color: #ffc979;
+  background-color: #fed699;
   border-top-right-radius: 3%;
   border-top-left-radius: 3%;
 }
