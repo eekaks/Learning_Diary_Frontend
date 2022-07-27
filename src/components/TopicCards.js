@@ -2,6 +2,7 @@ import '../App.css';
 import { useState } from 'react';
 import topicService from '../services/topicService';
 import { handleCheckClick, handleDeleteClick } from './clickHandlers';
+import PropTypes from 'prop-types';
 
 const NewTopicCard = ({topicToShow, setTopics, topics}) => {
 
@@ -69,6 +70,12 @@ const NewTopicCard = ({topicToShow, setTopics, topics}) => {
       </div>
     </div>
   )
+}
+
+NewTopicCard.propTypes = {
+  topicToShow: PropTypes.object,
+  topics: PropTypes.array.isRequired,
+  setTopics: PropTypes.func.isRequired,
 }
 
 const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
@@ -176,6 +183,13 @@ const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
   }
 }
 
+TopicCard.propTypes = {
+  topic: PropTypes.object.isRequired,
+  topics: PropTypes.array.isRequired,
+  setTopics: PropTypes.func.isRequired,
+  handleCardClick: PropTypes.func.isRequired
+}
+
 const FinishedTopicCard = ({topic, setTopics}) => {
 
   const cardText = `${topic.description}\n\nStarted learning: ${new Date(topic.startLearningDate).toDateString()}\n\nTime spent: ${topic.timeSpent} days\n\nSources: ${topic.source}`
@@ -191,6 +205,11 @@ const FinishedTopicCard = ({topic, setTopics}) => {
       </div>
     </div>
   )
+}
+
+FinishedTopicCard.propTypes = {
+  topic: PropTypes.object.isRequired,
+  setTopics: PropTypes.func.isRequired
 }
 
 export { TopicCard, NewTopicCard, FinishedTopicCard };

@@ -6,6 +6,7 @@ import noteService from './services/noteService';
 import { TopBar, TopicBar } from './components/Bars';
 import { TopicCard, NewTopicCard, FinishedTopicCard } from './components/TopicCards';
 import { TaskCard, NewTaskCard, FinishedTaskCard } from './components/TaskCards';
+import PropTypes from 'prop-types';
 
 const CardGrid = ({topics, tasks, handleCardClick, topicToShow, setTopics, setTopicToShow, setTasks}) => {
   if (topicToShow === null)
@@ -30,6 +31,16 @@ const CardGrid = ({topics, tasks, handleCardClick, topicToShow, setTopics, setTo
       </>
     )
   }
+}
+
+CardGrid.propTypes = {
+  topics: PropTypes.array,
+  tasks: PropTypes.array,
+  setTopics: PropTypes.func.isRequired,
+  setTasks: PropTypes.func.isRequired,
+  topicToShow: PropTypes.object,
+  setTopicToShow: PropTypes.func.isRequired,
+  handleCardClick: PropTypes.func.isRequired
 }
 
 const App = () => {

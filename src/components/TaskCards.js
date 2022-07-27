@@ -224,4 +224,9 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     )
   }
 
+  FinishedTaskCard.propTypes = {
+    task: PropTypes.object.isRequired,
+    setTasks: PropTypes.func.isRequired
+  }
+
   export { TaskCard, NewTaskCard, FinishedTaskCard };
