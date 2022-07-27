@@ -256,3 +256,21 @@ body {
 .checkTick:hover {
   color: #562cfb;
 }
+
+.showNotes {
+  margin: 0.8rem;
+  background-color: #ffc979;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-width: 0.1rem;
+  border-radius: 3%;
+  text-align: center;
+  padding: 0.3rem;
+  color: black;
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
+
+.showNotes:hover {
+  background-color: #fba92c;
+  cursor: default;
+}

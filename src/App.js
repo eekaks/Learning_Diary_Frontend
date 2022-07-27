@@ -2,7 +2,6 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import topicService from './services/topicService';
 import taskService from './services/taskService';
-import noteService from './services/noteService';
 import { TopBar, TopicBar } from './components/Bars';
 import { TopicCard, NewTopicCard, FinishedTopicCard } from './components/TopicCards';
 import { TaskCard, NewTaskCard, FinishedTaskCard } from './components/TaskCards';
@@ -40,7 +39,7 @@ CardGrid.propTypes = {
   setTasks: PropTypes.func.isRequired,
   topicToShow: PropTypes.object,
   setTopicToShow: PropTypes.func.isRequired,
-  handleCardClick: PropTypes.func.isRequired
+  handleCardClick: PropTypes.func.isRequired,
 }
 
 const App = () => {
@@ -48,7 +47,6 @@ const App = () => {
   const [topicToShow, setTopicToShow] = useState(null)
   const [topics, setTopics] = useState([])
   const [tasks, setTasks] = useState([])
-  const [notes, setNotes] = useState([])
 
   useEffect(() => {
     topicService.getAll()
@@ -61,13 +59,6 @@ const App = () => {
     taskService.getAll()
       .then(tasks => {
         setTasks(tasks)
-      })
-  }, [])
-
-  useEffect(() => {
-    noteService.getAll()
-      .then(notes => {
-        setNotes(notes)
       })
   }, [])
 
@@ -91,10 +82,18 @@ const App = () => {
 
   return (
     <div className='container'>
-      <TopBar topicToShow={topicToShow} handleBarClick={handleBarClick} stats={stats}/>
-      <TopicBar topicToShow={topicToShow} handleBarClick={handleBarClick}/>
-      <NewTopicCard topicToShow={topicToShow} setTopics={setTopics} topics={topics} />
-      <NewTaskCard topicToShow={topicToShow} tasks={tasks} setTasks={setTasks} />
+      {!topicToShow
+        ? 
+        <>
+          <TopBar handleBarClick={handleBarClick} stats={stats}/>
+          <NewTopicCard setTopics={setTopics} topics={topics} />
+        </>
+        : 
+        <>
+          <TopicBar topicToShow={topicToShow} handleBarClick={handleBarClick}/>
+          <NewTaskCard topicToShow={topicToShow} tasks={tasks} setTasks={setTasks}/>
+        </>
+      }
       <CardGrid topics={topics} tasks={tasks} handleCardClick={handleCardClick} topicToShow={topicToShow} setTopics={setTopics} setTopicToShow={setTopicToShow} setTasks={setTasks}/>
     </div>
   );

@@ -1,6 +1,7 @@
 import '../App.css';
 import { useState } from 'react';
 import taskService from '../services/taskService';
+import { Note } from './Note'
 import { handleCheckClick, handleDeleteClick } from './clickHandlers';
 import PropTypes from 'prop-types';
 
@@ -24,7 +25,14 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     }
 
     const handlePrioClick = (prioNumber) => {
-      setNewPrio(prioNumber)
+      if (newPrio === prioNumber)
+      {
+        setNewPrio(null)
+      }
+      else
+      {
+        setNewPrio(prioNumber)
+      }
     }
   
     const handleSaveClick = e => {
@@ -55,24 +63,20 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
           description: newDesc,
           deadline: newDL,
           priority: parseInt(newPrio),
-          done: false
+          done: false,
+          notes: "Enter your notes here"
         }
-    
+
         taskService.create(newTask).then(returnedTask => {
-          setTasks(tasks.concat(returnedTask))
-        })
-    
+            setTasks(tasks.concat(returnedTask))
+          })
+        
         setNewTitle('Enter new task title')
         setNewDesc('Enter description')
         setNewDL('')
         setNewPrio(null)
+        }
       }
-    }
-  
-    if (topicToShow === null)
-    {  
-      return null
-    }
   
     return (
       <div className='card'>
@@ -98,7 +102,7 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
   NewTaskCard.propTypes = {
     topicToShow: PropTypes.object,
     tasks: PropTypes.array.isRequired,
-    setTasks: PropTypes.func.isRequired
+    setTasks: PropTypes.func.isRequired,
   }
   
   const TaskCard = ({task, tasks, setTasks, topicToShow}) => {
@@ -147,7 +151,8 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
           description: newDesc,
           deadline: new Date(newDL),
           priority: parseInt(newPrio),
-          done: false
+          done: false,
+          notes: task.notes
         }
         
         taskService.update(id, updatedTask).then(returnedTask => {
@@ -183,11 +188,12 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     return (
         <div className='card'>
             <div className={chooseCardStyle(task.priority)}>
-            <strong>{task.title}</strong>
-            <i className='fa-solid fa-check fa-xl checkTick' onClick={(e) => {handleCheckClick(e, task, taskService, setTasks)}}></i>
+              <strong>{task.title}</strong>
+              <i className='fa-solid fa-check fa-xl checkTick' onClick={(e) => {handleCheckClick(e, task, taskService, setTasks)}}></i>
             </div>
             <div className='cardBottom'>
-            {cardText}
+              {cardText}
+              <Note task={task} tasks={tasks} setTasks={setTasks}/>
             </div>
             <i className='fa-solid fa-pen-to-square fa-2xl topicEdit' onClick={handleEditClick}></i>
             <i className='fa-solid fa-floppy-disk fa-2xl editSave' ></i>
@@ -224,7 +230,7 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     topicToShow: PropTypes.object.isRequired,
     task: PropTypes.object.isRequired,
     tasks: PropTypes.array.isRequired,
-    setTasks: PropTypes.func.isRequired
+    setTasks: PropTypes.func.isRequired,
   }
 
   const FinishedTaskCard = ({task, setTasks}) => {

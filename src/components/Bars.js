@@ -3,8 +3,6 @@ import diaryLogo from './learningdiarylogo.png';
 import PropTypes from 'prop-types';
 
   const TopBar = ({topicToShow, handleBarClick, stats}) =>  {
-      if (topicToShow === null)
-      {
         return (
           <div className='topBar topicBar' onClick={handleBarClick}>
             <img src={diaryLogo} className='diaryLogo' alt='Learning diary'/>
@@ -14,21 +12,14 @@ import PropTypes from 'prop-types';
             </div>
           </div>
         )
-      }
-      return null
   }
 
   TopBar.propTypes = {
-    topicToShow: PropTypes.object,
     handleBarClick: PropTypes.func.isRequired,
     stats: PropTypes.object.isRequired
   }
 
   const TopicBar = ({topicToShow, handleBarClick}) => {
-    if (topicToShow === null)
-    {
-      return null
-    }
   
     const cardText = `${topicToShow.description}\nStarted learning: ${new Date(topicToShow.startLearningDate).toDateString()}\nEstimated time to master: ${topicToShow.estimatedTimeToMaster} days.\nSources: ${topicToShow.source}.`
   
@@ -41,7 +32,7 @@ import PropTypes from 'prop-types';
   }
 
   TopicBar.propTypes = {
-    topicToShow: PropTypes.object,
+    topicToShow: PropTypes.object.isRequired,
     handleBarClick: PropTypes.func.isRequired,
   }
 

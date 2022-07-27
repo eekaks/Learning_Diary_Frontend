@@ -4,7 +4,7 @@ import topicService from '../services/topicService';
 import { handleCheckClick, handleDeleteClick } from './clickHandlers';
 import PropTypes from 'prop-types';
 
-const NewTopicCard = ({topicToShow, setTopics, topics}) => {
+const NewTopicCard = ({setTopics, topics}) => {
 
   const [newTitle, setNewTitle] = useState('Enter new topic title')
   const [newDesc, setNewDesc] = useState('Enter description')
@@ -76,11 +76,6 @@ const NewTopicCard = ({topicToShow, setTopics, topics}) => {
     }
   }
 
-  if (topicToShow !== null)
-  {
-    return null
-  }
-
   return (
     <div className='card'>
       <div className='cardTop'>
@@ -98,7 +93,6 @@ const NewTopicCard = ({topicToShow, setTopics, topics}) => {
 }
 
 NewTopicCard.propTypes = {
-  topicToShow: PropTypes.object,
   topics: PropTypes.array.isRequired,
   setTopics: PropTypes.func.isRequired,
 }
