@@ -142,13 +142,13 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     const chooseCardStyle = (prio) => {
         switch(prio) {
             case 1: {
-                return 'cardTop urgentPrio'
+                return 'cardTop urgentTaskPrio'
             }
             case 2: {
-                return 'cardTop normalPrio'
+                return 'cardTop normalTaskPrio'
             }
             case 3: {
-                return 'cardTop lowPrio'
+                return 'cardTop lowTaskPrio'
             }
             default: {
                 return 'cardTop'
