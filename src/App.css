@@ -14,7 +14,7 @@ body {
 
 /* Styles for the top bar */
 
-.topBar {
+.topBar, .topicBar {
   background-color: #fba92c;
   color: #000000;
   height: 12rem;
@@ -24,11 +24,15 @@ body {
   white-space: pre-wrap;
 }
 
-.topBar:hover .bookButton {
+.topBar {
+  display: flex;
+}
+
+.topicBar:hover .bookButton {
   color: #562cfb;
 }
 
-.topBar:hover {
+.topicBar:hover {
   cursor: pointer;
 }
 
@@ -40,10 +44,6 @@ body {
 .landingHeaderText {
   margin-top: 5rem;
   font-weight: bold;
-}
-
-.topicBar {
-  display: flex;
 }
 
 .bookButton {
@@ -113,6 +113,7 @@ body {
   font-size: x-large;
   font-family: Georgia, 'Times New Roman', Times, serif;
   word-wrap: break-word;
+  padding-bottom: 0rem;
 }
 
 /* Styles for the bottom half of the card */
@@ -152,22 +153,27 @@ body {
 /* Styles for inputting new card or editing old information */
 
 .input {
-  width: 98%;
-  background: transparent;
+  width: 90%;
   color:#9e9e9e;
-  border: 0;
-  padding: 0;
-  padding-bottom: 1rem;
+  border-color: #fba92c;
+  padding: 0.7rem;
+  margin: 0.2rem;
+  border-radius: 2%;
+  border-width: 2px;
 }
 
 .inputTitle {
-  width: 97%;
+  width: 94%;
   background: transparent;
   font-size: x-large;
   font-family: Georgia, 'Times New Roman', Times, serif;
   word-wrap: break-word;
   font-weight: bold;
-  border: 0;
+  border-color: #565656;
+  border-radius: 3%;
+  border-width: 2px;
+  padding: 0.3rem;
+  
 }
 
 .inputAfterText {
@@ -182,6 +188,14 @@ body {
   width: 7rem;
 }
 
+.chooseDeadLineText {
+  padding-top: 1rem;
+}
+
+.textBeforeInput {
+  padding-top: 0.7rem;
+}
+
 .noteButton {
   padding-left: 1rem;
 }
@@ -192,6 +206,7 @@ body {
 
 .prioChooseRow {
   display: inline-table;
+  padding-right: 0.7rem;
 }
 
 .prioButton {

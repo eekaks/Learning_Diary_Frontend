@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
   const TopBar = ({topicToShow, handleBarClick, stats}) =>  {
         return (
-          <div className='topBar topicBar' onClick={handleBarClick}>
+          <div className='topBar' onClick={handleBarClick}>
             <img src={diaryLogo} className='diaryLogo' alt='Learning diary'/>
             <div className='landingHeaderText'>
               <div>You have completed {stats.completedTopics}/{stats.topics} topics.</div>
@@ -24,7 +24,7 @@ import PropTypes from 'prop-types';
     const cardText = `${topicToShow.description}\nStarted learning: ${new Date(topicToShow.startLearningDate).toDateString()}\nEstimated time to master: ${topicToShow.estimatedTimeToMaster} days.\nSources: ${topicToShow.source}`
   
     return (
-      <div className='topBar' onClick={handleBarClick}>
+      <div className='topicBar' onClick={handleBarClick}>
         <div className='headerFooterFont'><i className='fa-solid fa-book bookButton' ></i> {topicToShow.title}</div>
         <div className='headerText'>{cardText}</div>
       </div>

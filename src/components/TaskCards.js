@@ -81,12 +81,12 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     return (
       <div className='card'>
         <div className='cardTop'>
-          <input className='inputTitle' value={newTitle} onChange={handleTitleChange} />
+          <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => { if (newTitle==='Enter new task title'){setNewTitle('')}}}/>
         </div>
         <div className='cardBottom'>
-          <input className='input' value={newDesc} onChange={handleDescChange} />
+          <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
           <div className='inputLine'>
-            <div>Choose deadline: </div>
+            <div className='chooseDeadLineText'>Choose deadline: </div>
             <input className='input inputAfterText' type='date' value={newDL} onChange={handleDLChange} />
           </div>
             <div className='prioChooseRow'>Choose priority: </div>
@@ -205,12 +205,12 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     return (
         <div className='card'>
             <div className='cardTop'>
-                <input className='inputTitle' value={newTitle} onChange={handleTitleChange} />
+                <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => setNewTitle('')}/>
             </div>
                 <div className='cardBottom'>
-                    <input className='input' value={newDesc} onChange={handleDescChange} />
+                    <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => setNewDesc('')}/>
                         <div className='inputLine'>
-                            <div>Choose deadline: </div>
+                            <div className='textBeforeInput'>Choose deadline: </div>
                             <input className='input inputAfterText' type='date' value={newDL} onChange={handleDLChange} />
                         </div>
                         <div className='prioChooseRow'>Choose priority: </div>

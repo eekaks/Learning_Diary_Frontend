@@ -8,7 +8,7 @@ const NewTopicCard = ({setTopics, topics}) => {
 
   const [newTitle, setNewTitle] = useState('Enter new topic title')
   const [newDesc, setNewDesc] = useState('Enter description')
-  const [newEstimate, setNewEstimate] = useState('Enter estimated time to master')
+  const [newEstimate, setNewEstimate] = useState('Enter days to master')
   const [newSource, setNewSource] = useState('Enter sources')
 
   const handleTitleChange = (event) => {
@@ -42,7 +42,7 @@ const NewTopicCard = ({setTopics, topics}) => {
     }
     else if (newEstimate === 'Enter estimated time to master')
     {
-      window.alert('Enter an estimated time to master')
+      window.alert('Enter days to master')
     }
     else if (!Number.isInteger(parsed))
     {
@@ -71,7 +71,7 @@ const NewTopicCard = ({setTopics, topics}) => {
       })
       setNewTitle('Enter new topic title')
       setNewDesc('Enter description')
-      setNewEstimate('Enter estimated time to master')
+      setNewEstimate('Enter days to master')
       setNewSource('Enter sources')
     }
   }
@@ -79,12 +79,12 @@ const NewTopicCard = ({setTopics, topics}) => {
   return (
     <div className='card'>
       <div className='cardTop'>
-        <input className='inputTitle' value={newTitle} onChange={handleTitleChange} />
+        <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => { if (newTitle==='Enter new topic title'){setNewTitle('')}}}/>
       </div>
       <div className='cardBottom'>
-        <input className='input' value={newDesc} onChange={handleDescChange} />
-        <input className='input' value={newEstimate} onChange={handleEstimateChange} />
-        <input className='input' value={newSource} onChange={handleSourceChange} />
+        <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
+        <input className='input' value={newEstimate} onChange={handleEstimateChange} onClick={() => { if (newEstimate==='Enter days to master'){setNewEstimate('')}}}/>
+        <input className='input' value={newSource} onChange={handleSourceChange} onClick={() => { if (newSource==='Enter sources'){setNewSource('')}}}/>
         <i className='fa-solid fa-floppy-disk fa-2xl' onClick={handleSaveClick}></i>
 
       </div>
@@ -121,7 +121,7 @@ const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
     setNewSource(event.target.value)
   }
 
-  const cardText = `${topic.description}\n\nStarted learning: ${new Date(topic.startLearningDate).toDateString()}\n\nEstimated time to master: ${topic.estimatedTimeToMaster} days\n\nSources: ${topic.source}`
+  const cardText = `${topic.description}\n\nStarted learning: ${new Date(topic.startLearningDate).toDateString()}\n\nDays to master: ${topic.estimatedTimeToMaster} days\n\nSources: ${topic.source}`
 
   const handleEditClick = e => {
     e.stopPropagation()
@@ -181,17 +181,17 @@ const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
     return (
       <div className='card' >
         <div className='cardTop'>
-          <input className='inputTitle' value={newTitle} onChange={handleTitleChange} />
+          <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => setNewTitle('')}/>
         </div>
         <div className='cardBottom'>
-          <input className='input' value={newDesc} onChange={handleDescChange} />
+          <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => setNewDesc('')}/>
             <div className='inputLine'>
-              <div>Estimated time to master: </div>
-              <input className='input inputAfterText' value={newEstimate} onChange={handleEstimateChange} />
+              <div className='textBeforeInput'>Days to master: </div>
+              <input className='input inputAfterText' value={newEstimate} onChange={handleEstimateChange} onClick={() => setNewEstimate('')}/>
             </div>
             <div className='inputLine'>
-              <div>Sources: </div>
-              <input className='input inputAfterText' value={newSource} onChange={handleSourceChange} />
+              <div className='textBeforeInput'>Sources: </div>
+              <input className='input inputAfterText' value={newSource} onChange={handleSourceChange} onClick={() => setNewSource('')}/>
             </div>
         </div>
         <i className="fa-solid fa-pen-to-square fa-2xl topicEdit" onClick={handleEditClick}></i>
