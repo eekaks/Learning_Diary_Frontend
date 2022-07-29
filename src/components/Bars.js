@@ -21,7 +21,7 @@ import PropTypes from 'prop-types';
 
   const TopicBar = ({topicToShow, handleBarClick}) => {
   
-    const cardText = `${topicToShow.description}\nStarted learning: ${new Date(topicToShow.startLearningDate).toDateString()}\nEstimated time to master: ${topicToShow.estimatedTimeToMaster} days.\nSources: ${topicToShow.source}.`
+    const cardText = `${topicToShow.description}\nStarted learning: ${new Date(topicToShow.startLearningDate).toDateString()}\nEstimated time to master: ${topicToShow.estimatedTimeToMaster} days.\nSources: ${topicToShow.source}`
   
     return (
       <div className='topBar' onClick={handleBarClick}>

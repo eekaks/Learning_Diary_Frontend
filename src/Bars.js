@@ -25,7 +25,7 @@ const TopBar = ({topicToShow, handleBarClick, stats}) =>  {
     const cardText = `${topicToShow.description}\nStarted learning: ${new Date(topicToShow.startLearningDate).toDateString()}\nEstimated time to master: ${topicToShow.estimatedTimeToMaster} days.\nSources: ${topicToShow.source}.`
   
     return (
-      <div className='topBar' onClick={handleBarClick}>
+      <div className='topBar topicBar' onClick={handleBarClick}>
         <div className='headerFooterFont'><i className='fa-solid fa-book bookButton' ></i> {topicToShow.title}</div>
         <div className='headerText'>{cardText}</div>
       </div>

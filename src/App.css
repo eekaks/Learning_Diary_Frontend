@@ -40,6 +40,7 @@ body {
 
 .topicBar {
   display: flex;
+  cursor: pointer;
 }
 
 .bookButton {
@@ -96,6 +97,7 @@ body {
 .card:hover, .card:focus, .card:active {
   -webkit-transform: translateY(-8px);
   transform: translateY(-8px);
+  cursor: pointer;
 }
 
 /* Styles for the card title box */
@@ -116,6 +118,8 @@ body {
   background-color: white;
   color:#9e9e9e;
   padding: 1rem;
+  border-bottom-right-radius: 3%;
+  border-bottom-left-radius: 3%;
 }
 
 .finishedCard {
@@ -177,6 +181,10 @@ body {
 
 .noteButton {
   padding-left: 1rem;
+}
+
+.noteArea {
+  margin-bottom: 2rem;
 }
 
 .prioChooseRow {
