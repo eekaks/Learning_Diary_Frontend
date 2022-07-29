@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/task'
+const baseUrl = 'http://localhost:3001/task'
 
 const getOne = (id) => {
     const request = axios.get(`${baseUrl}/${id}`)

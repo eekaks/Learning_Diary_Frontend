@@ -28,6 +28,10 @@ body {
   color: #562cfb;
 }
 
+.topBar:hover {
+  cursor: pointer;
+}
+
 .diaryLogo {
   height: 11rem;
   padding-right: 2rem;
@@ -40,7 +44,6 @@ body {
 
 .topicBar {
   display: flex;
-  cursor: pointer;
 }
 
 .bookButton {
