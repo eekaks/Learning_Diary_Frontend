@@ -57,7 +57,6 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
       else
       {
         const newTask = {
-          id: 0,
           topic: topicToShow.id,
           title: newTitle,
           description: newDesc,

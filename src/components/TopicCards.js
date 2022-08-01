@@ -55,7 +55,6 @@ const NewTopicCard = ({setTopics, topics}) => {
     else 
     {
       const newTopic = {
-        id: 0,
         title: newTitle,
         description: newDesc,
         estimatedTimeToMaster: parseInt(newEstimate),
