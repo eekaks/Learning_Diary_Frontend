@@ -4,12 +4,12 @@ const baseUrl = '/task'
 const getOne = (id) => {
     const request = axios.get(`${baseUrl}/${id}`)
     return request.then(response => response.data)
-  }
+}
 
 const getAll = () => {
     const request = axios.get(baseUrl)
     return request.then(response => response.data)
-  }
+}
   
 const create = newEntry => {
     const request = axios.post(baseUrl, newEntry)

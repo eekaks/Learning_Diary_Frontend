@@ -1,7 +1,7 @@
 import '../App.css';
 import { useState } from 'react';
 import topicService from '../services/topicService';
-import { handleCheckClick, handleDeleteClick } from './clickHandlers';
+import { handleCheckClick, handleDeleteClick, handleTopicDeleteClick } from './clickHandlers';
 import PropTypes from 'prop-types';
 
 const NewTopicCard = ({setTopics, topics}) => {
@@ -76,7 +76,7 @@ const NewTopicCard = ({setTopics, topics}) => {
   }
 
   return (
-    <div className='card'>
+    <div className='card newCard'>
       <div className='cardTop'>
         <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => { if (newTitle==='Enter new topic title'){setNewTitle('')}}}/>
       </div>
@@ -96,7 +96,7 @@ NewTopicCard.propTypes = {
   setTopics: PropTypes.func.isRequired,
 }
 
-const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
+const TopicCard = ({topic, topics, setTopics, handleCardClick, tasks, setTasks}) => {
 
   const [editTopic, setEditTopic] = useState(false)
   const [newTitle, setNewTitle] = useState(topic.title)
@@ -171,7 +171,7 @@ const TopicCard = ({topic, topics, setTopics, handleCardClick}) => {
         </div>
         <i className="fa-solid fa-pen-to-square fa-2xl topicEdit" onClick={handleEditClick}></i>
         <i className='fa-solid fa-floppy-disk fa-2xl editSave' onClick={handleSaveClick}></i>
-        <i className='fa-solid fa-trash-can fa-2xl' onClick={(e) => {handleDeleteClick(e, topic, topics, topicService, setTopics)}}></i>
+        <i className='fa-solid fa-trash-can fa-2xl' onClick={(e) => {handleTopicDeleteClick(e, topic, topics, topicService, setTopics, setTasks, tasks)}}></i>
       </div>
     )
   }

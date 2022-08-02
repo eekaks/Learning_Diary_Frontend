@@ -1,6 +1,12 @@
 import axios from 'axios'
 const baseUrl = '/topic'
 
+let token = null
+
+const setToken = newToken => {
+  token = `bearer ${newToken}`
+}
+
 const getOne = (id) => {
     const request = axios.get(`${baseUrl}/${id}`)
     return request.then(response => response.data)
@@ -11,9 +17,13 @@ const getAll = () => {
     return request.then(response => response.data)
   }
   
-const create = newEntry => {
-    const request = axios.post(baseUrl, newEntry)
-    return request.then(response => response.data)
+const create = async newObject => {
+	const config = {
+		headers: { Authorization: token },
+	}
+
+	const response = await axios.post(baseUrl, newObject, config)
+	return response.data
 }
 
 const remove = (id) => {
@@ -26,4 +36,4 @@ const update = (id, newObject) => {
     return request.then(response => response.data)
 }
 
-export default { getOne, getAll, create, remove, update }
+export default { getOne, getAll, create, remove, update, setToken }

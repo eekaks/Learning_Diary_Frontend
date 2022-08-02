@@ -9,6 +9,16 @@ const handleDeleteClick = (e, item, items, itemService, setItems) => {
     }
   }
 
+	const handleTopicDeleteClick = async (e, item, items, itemService, setItems, setTasks, tasks) => {
+    e.stopPropagation()
+    const result = window.confirm(`Delete ${item.title} ?`)
+    if (result === true) {
+      await itemService.remove(item.id)
+			await setItems(items.filter(oldItem => oldItem.id !== item.id))
+			await setTasks(tasks.filter(oldTask => oldTask.topic !== item.id))
+    }
+  }
+
 const handleCheckClick = (e, item, itemService, setItems) => {
     e.stopPropagation()
     const id = item.id
@@ -36,4 +46,4 @@ const handleCheckClick = (e, item, itemService, setItems) => {
     })
   }
 
-export { handleCheckClick, handleDeleteClick }
+export { handleCheckClick, handleDeleteClick, handleTopicDeleteClick }

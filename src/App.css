@@ -28,6 +28,57 @@ body {
   display: flex;
 }
 
+.loginBox {
+	padding-left: 2rem;
+}
+
+.usernameRow {
+	padding: 0.1rem;
+}
+
+.usernameBox {
+	background-color: transparent;
+	border-width: 1px;
+	padding: 0.3rem;
+	margin-left: 0.5rem;
+}
+
+.passwordRow {
+	padding: 0.1rem;
+}
+
+.passwordBox {
+	background-color: transparent;
+	border-width: 1px;
+	padding: 0.3rem;
+	margin-left: 0.65rem;
+}
+
+.loginButton {
+	background-color:#eeb156;
+	border-radius: 7%;
+	margin-left: 6rem;
+	width: 55%;
+	margin-top: 0.5rem;
+}
+
+.loginButton:hover {
+	cursor: pointer;
+}
+
+.logoutButton {
+	background-color:#eeb156;
+	border-radius: 7%;
+	width: 55%;
+	margin-top: 0.5rem;
+	margin-left: 2rem;
+}
+
+.logoutButton:hover {
+	cursor: pointer;
+}
+
+
 .topicBar:hover .bookButton {
   color: #562cfb;
 }
@@ -42,8 +93,9 @@ body {
 }
 
 .landingHeaderText {
-  margin-top: 5rem;
+  margin-top: 0rem;
   font-weight: bold;
+	padding-top: 4rem;
 }
 
 .bookButton {
@@ -101,6 +153,10 @@ body {
   -webkit-transform: translateY(-8px);
   transform: translateY(-8px);
   cursor: pointer;
+}
+
+.newCard:hover {
+	cursor: default;
 }
 
 /* Styles for the card title box */

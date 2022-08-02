@@ -7,14 +7,19 @@ import { TopicCard, NewTopicCard, FinishedTopicCard } from './components/TopicCa
 import { TaskCard, NewTaskCard, FinishedTaskCard } from './components/TaskCards';
 import PropTypes from 'prop-types';
 
-const CardGrid = ({topics, tasks, handleCardClick, topicToShow, setTopics, setTopicToShow, setTasks}) => {
+const CardGrid = ({user, topics, tasks, handleCardClick, topicToShow, setTopics, setTopicToShow, setTasks}) => {
+
+	const checkTopicOwner = (topic, user) => {
+		return topic.user.id === user.id
+	}
+
   if (topicToShow === null)
   {
   return (
     <>
-    {topics.filter(topic => topic.inProgress).map(topic =>
-      <TopicCard key={topic.id} topic={topic} topics={topics} handleCardClick={handleCardClick} setTopics={setTopics} setTopicToShow={setTopicToShow}/>)}
-    {topics.filter(topic => !topic.inProgress).map(topic =>
+    {topics.filter(topic => topic.inProgress && checkTopicOwner(topic, user)).map(topic =>
+      <TopicCard key={topic.id} topic={topic} topics={topics} handleCardClick={handleCardClick} setTopics={setTopics} setTopicToShow={setTopicToShow} tasks={tasks} setTasks={setTasks}/>)}
+    {topics.filter(topic => !topic.inProgress && checkTopicOwner(topic, user)).map(topic =>
       <FinishedTopicCard key={topic.id} topic={topic} setTopics={setTopics}/>)}
     </>
   )
@@ -47,6 +52,7 @@ const App = () => {
   const [topicToShow, setTopicToShow] = useState(null)
   const [topics, setTopics] = useState([])
   const [tasks, setTasks] = useState([])
+	const [user, setUser] = useState(null)
 
   useEffect(() => {
     topicService.getAll()
@@ -60,6 +66,15 @@ const App = () => {
       .then(tasks => {
         setTasks(tasks)
       })
+  }, [])
+
+	useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedDiaryappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      topicService.setToken(user.token)
+    }
   }, [])
 
   const handleCardClick = (topic) => {
@@ -85,8 +100,8 @@ const App = () => {
       {!topicToShow
         ? 
         <>
-          <TopBar handleBarClick={handleBarClick} stats={stats}/>
-          <NewTopicCard setTopics={setTopics} topics={topics} />
+          <TopBar handleBarClick={handleBarClick} stats={stats} user={user} setUser={setUser}/>
+          {user ? <NewTopicCard setTopics={setTopics} topics={topics}/> : null}
         </>
         : 
         <>
@@ -94,7 +109,7 @@ const App = () => {
           <NewTaskCard topicToShow={topicToShow} tasks={tasks} setTasks={setTasks}/>
         </>
       }
-      <CardGrid topics={topics} tasks={tasks} handleCardClick={handleCardClick} topicToShow={topicToShow} setTopics={setTopics} setTopicToShow={setTopicToShow} setTasks={setTasks}/>
+      {user ? <CardGrid user={user} topics={topics} tasks={tasks} handleCardClick={handleCardClick} topicToShow={topicToShow} setTopics={setTopics} setTopicToShow={setTopicToShow} setTasks={setTasks}/> : null}
     </div>
   );
 }

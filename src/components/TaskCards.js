@@ -78,7 +78,7 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
       }
   
     return (
-      <div className='card'>
+      <div className='card newCard'>
         <div className='cardTop'>
           <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => { if (newTitle==='Enter new task title'){setNewTitle('')}}}/>
         </div>
