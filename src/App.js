@@ -10,9 +10,10 @@ import PropTypes from 'prop-types';
 const CardGrid = ({user, topics, tasks, handleCardClick, topicToShow, setTopics, setTopicToShow, setTasks}) => {
 
 	const checkTopicOwner = (topic, user) => {
-		return topic.user.id === user.id
+		return topic.sortingid === user.userid
 	}
 
+	
   if (topicToShow === null)
   {
   return (
@@ -88,19 +89,12 @@ const App = () => {
 
   const handleBarClick = () => {setTopicToShow(null)}
 
-  let stats = {
-    topics: topics.length,
-    completedTopics: topics.filter(topic => !topic.inProgress).length,
-    tasks: tasks.length,
-    completedTasks: tasks.filter(task => task.done).length
-  }
-
   return (
     <div className='container'>
       {!topicToShow
         ? 
         <>
-          <TopBar handleBarClick={handleBarClick} stats={stats} user={user} setUser={setUser}/>
+          <TopBar handleBarClick={handleBarClick} topics={topics} tasks={tasks} user={user} setUser={setUser}/>
           {user ? <NewTopicCard setTopics={setTopics} topics={topics}/> : null}
         </>
         : 

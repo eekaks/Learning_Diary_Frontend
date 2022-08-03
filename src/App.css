@@ -32,8 +32,23 @@ body {
 	padding-left: 2rem;
 }
 
+.signupBox {
+	padding-left: 2rem;
+}
+
 .usernameRow {
 	padding: 0.1rem;
+}
+
+.fullnameRow {
+	padding: 0.1rem;
+}
+
+.fullnameBox {
+	background-color: transparent;
+	border-width: 1px;
+	padding: 0.3rem;
+	margin-left: 0.65rem;
 }
 
 .usernameBox {
@@ -57,7 +72,7 @@ body {
 .loginButton {
 	background-color:#eeb156;
 	border-radius: 7%;
-	margin-left: 6rem;
+	margin-left: 5.58rem;
 	width: 55%;
 	margin-top: 0.5rem;
 }
@@ -95,7 +110,7 @@ body {
 .landingHeaderText {
   margin-top: 0rem;
   font-weight: bold;
-	padding-top: 4rem;
+	padding-top: 2rem;
 }
 
 .bookButton {
