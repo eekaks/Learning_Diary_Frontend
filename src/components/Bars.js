@@ -175,6 +175,7 @@ const TopBar = ({user, setUser, handleBarClick, topics, tasks}) =>  {
 						: <Stats user={user} topics={topics} tasks={tasks} handleLogout={(event) => handleLogout(event, setUser, user)}/>
 					}
 					</div>
+					<div className='warningText'>Don't save any sensitive information, only the passwords are encrypted.</div>
 				</div>
 			)
 }

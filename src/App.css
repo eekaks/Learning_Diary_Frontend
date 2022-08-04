@@ -113,6 +113,11 @@ body {
 	padding-top: 2rem;
 }
 
+.warningText {
+	font-weight: bold;
+	padding-top: 4rem;
+}
+
 .bookButton {
   color: black;
 }
