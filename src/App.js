@@ -3,16 +3,39 @@ import { useState, useEffect } from 'react';
 import topicService from './services/topicService';
 import taskService from './services/taskService';
 import { TopBar, TopicBar } from './components/Bars';
-import { TopicCard, NewTopicCard, FinishedTopicCard } from './components/TopicCards';
-import { TaskCard, NewTaskCard, FinishedTaskCard } from './components/TaskCards';
+import { TopicCard, NewTopicCard, FinishedTopicCard, ExampleTopicCard, ExampleFinishedTopicCard, ExampleNewTopicCard } from './components/TopicCards';
+import { TaskCard, NewTaskCard, FinishedTaskCard, ExampleTaskCard, ExampleFinishedTaskCard, ExampleNewTaskCard } from './components/TaskCards';
 import PropTypes from 'prop-types';
+import { exampleTopicData, exampleTaskData } from './components/exampleData';
 
-const CardGrid = ({user, topics, tasks, handleCardClick, topicToShow, setTopics, setTopicToShow, setTasks}) => {
+const CardGrid = ({user, topics, tasks, handleCardClick, topicToShow, setTopics, setTopicToShow, setTasks, exampleTopics, setExampleTopics, exampleTasks, setExampleTasks}) => {
 
 	const checkTopicOwner = (topic, user) => {
 		return topic.sortingid === user.userid
 	}
 
+if (!user)
+{
+	if (!topicToShow) {
+		return(
+		<>
+			{exampleTopics.filter(topic => topic.inProgress).map(topic =>
+				<ExampleTopicCard key={topic.id} topic={topic} handleCardClick={handleCardClick} exampleTopics={exampleTopics} setExampleTopics={setExampleTopics} setTopicToShow={setTopicToShow} exampleTasks={exampleTasks} setExampleTasks={setExampleTasks}/>)}
+			{exampleTopics.filter(topic => !topic.inProgress).map(topic =>
+      	<ExampleFinishedTopicCard key={topic.id} topic={topic} exampleTopics={exampleTopics} setExampleTopics={setExampleTopics}/>)}
+		</>
+		)
+	} else {
+		return (
+		<>
+			{exampleTasks.filter(task => task.topic === topicToShow.id && !task.done).map(task =>
+				<ExampleTaskCard key={task.id} task={task} exampleTasks={exampleTasks} setExampleTasks={setExampleTasks} topicToShow={topicToShow}/>)}
+			{exampleTasks.filter(task => task.topic === topicToShow.id && task.done).map(task =>
+				<ExampleFinishedTaskCard key={task.id} task={task} exampleTasks={exampleTasks} setExampleTasks={setExampleTasks}/>)}
+		</>
+		)
+	}
+}
 	
   if (topicToShow === null)
   {
@@ -41,8 +64,8 @@ const CardGrid = ({user, topics, tasks, handleCardClick, topicToShow, setTopics,
 CardGrid.propTypes = {
   topics: PropTypes.array,
   tasks: PropTypes.array,
-  setTopics: PropTypes.func.isRequired,
-  setTasks: PropTypes.func.isRequired,
+  setTopics: PropTypes.func,
+  setTasks: PropTypes.func,
   topicToShow: PropTypes.object,
   setTopicToShow: PropTypes.func.isRequired,
   handleCardClick: PropTypes.func.isRequired,
@@ -54,6 +77,8 @@ const App = () => {
   const [topics, setTopics] = useState([])
   const [tasks, setTasks] = useState([])
 	const [user, setUser] = useState(null)
+	const [exampleTopics, setExampleTopics] = useState(exampleTopicData)
+	const [exampleTasks, setExampleTasks] = useState(exampleTaskData)
 
   useEffect(() => {
     topicService.getAll()
@@ -95,15 +120,18 @@ const App = () => {
         ? 
         <>
           <TopBar handleBarClick={handleBarClick} topics={topics} tasks={tasks} user={user} setUser={setUser}/>
-          {user ? <NewTopicCard setTopics={setTopics} topics={topics}/> : null}
+          {user ? <NewTopicCard setTopics={setTopics} topics={topics}/>
+								: <ExampleNewTopicCard exampleTopics={exampleTopics} setExampleTopics={setExampleTopics}/>}
         </>
         : 
         <>
           <TopicBar topicToShow={topicToShow} handleBarClick={handleBarClick}/>
-          <NewTaskCard topicToShow={topicToShow} tasks={tasks} setTasks={setTasks}/>
+          {user ? <NewTaskCard topicToShow={topicToShow} tasks={tasks} setTasks={setTasks}/>
+								: <ExampleNewTaskCard exampleTasks={exampleTasks} setExampleTasks={setExampleTasks} topicToShow={topicToShow} />}
         </>
       }
-      {user ? <CardGrid user={user} topics={topics} tasks={tasks} handleCardClick={handleCardClick} topicToShow={topicToShow} setTopics={setTopics} setTopicToShow={setTopicToShow} setTasks={setTasks}/> : null}
+				{user ? <CardGrid user={user} topics={topics} tasks={tasks} handleCardClick={handleCardClick} topicToShow={topicToShow} setTopics={setTopics} setTopicToShow={setTopicToShow} setTasks={setTasks}/>
+							: <CardGrid handleCardClick={handleCardClick} topicToShow={topicToShow} setTopicToShow={setTopicToShow} exampleTopics={exampleTopics} setExampleTopics={setExampleTopics} exampleTasks={exampleTasks} setExampleTasks={setExampleTasks}/>}
     </div>
   );
 }

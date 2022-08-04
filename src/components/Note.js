@@ -53,4 +53,51 @@ Note.propTypes = {
     setTasks: PropTypes.func.isRequired
 }
 
-export { Note };
+const ExampleNote = ({ task, exampleTasks, setExampleTasks }) => {
+
+	const [showNote, setShowNote] = useState(false)
+	const [noteText, setNoteText] = useState(task.notes)
+
+	const handleTextChange = (event) => {
+			setNoteText(event.target.value)
+	}
+
+	const handleShowNotesClick = e => {
+			e.stopPropagation()
+			if (showNote) 
+			{
+					let updatedTask = task;
+					const id = task.id;
+					updatedTask.notes = noteText;
+
+					setExampleTasks(exampleTasks.map(task => task.id === id ? updatedTask : task))
+					setShowNote(!showNote)
+
+			}
+			else {
+					setShowNote(!showNote)
+			}
+	}
+
+	return (
+			<>
+			<div className='showNotes' onClick={(e) => {handleShowNotesClick(e)}}>
+					{showNote ? 'Save notes' : 'Show notes'}
+			</div>
+			<div>
+					{showNote
+							? <textarea className='noteArea' rows='5' cols='36' onChange={handleTextChange} value={noteText}></textarea>
+							: null
+					}
+			</div>
+			</>
+	)
+}
+
+ExampleNote.propTypes = {
+	task: PropTypes.object,
+	exampleTasks: PropTypes.array,
+	setExampleTasks: PropTypes.func.isRequired
+}
+
+export { Note, ExampleNote };

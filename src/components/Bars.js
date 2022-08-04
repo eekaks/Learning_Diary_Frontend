@@ -15,7 +15,7 @@ const SignupForm = ({setUser, setSignup, signup}) => {
 	const handleSignup = async (event) => {
 		event.preventDefault()
 		try {
-			const newUser = await userService.create( { username, name, password })
+			await userService.create( { username, name, password })
 			const user = await loginService.login({
 				username, password,
 			})
