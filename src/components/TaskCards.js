@@ -80,10 +80,10 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     return (
       <div className='card newCard'>
         <div className='cardTop'>
-          <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => { if (newTitle==='Enter new task title'){setNewTitle('')}}}/>
+				<input className='inputTitle' value={newTitle} onChange={handleTitleChange} onBlur={() => { if (newTitle===''){setNewTitle('Enter new task title')}}} onFocus={() => { if (newTitle==='Enter new task title'){setNewTitle('')}}}/>
         </div>
         <div className='cardBottom'>
-          <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
+          <input className='input' value={newDesc} onChange={handleDescChange} onBlur={() => { if (newDesc===''){setNewDesc('Enter description')}}} onFocus={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
           <div className='inputLine'>
             <div className='chooseDeadLineText'>Choose deadline: </div>
             <input className='input inputAfterText' type='date' value={newDL} onChange={handleDLChange} />
@@ -204,10 +204,10 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     return (
         <div className='card'>
             <div className='cardTop'>
-                <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => setNewTitle('')}/>
+                <input className='inputTitle' value={newTitle} onChange={handleTitleChange} />
             </div>
                 <div className='cardBottom'>
-                    <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => setNewDesc('')}/>
+                    <input className='input' value={newDesc} onChange={handleDescChange} />
                         <div className='inputLine'>
                             <div className='textBeforeInput'>Choose deadline: </div>
                             <input className='input inputAfterText' type='date' value={newDL} onChange={handleDLChange} />
@@ -259,7 +259,7 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     const [editTask, setEditTask] = useState(false)
     const [newTitle, setNewTitle] = useState(task.title)
     const [newDesc, setNewDesc] = useState(task.description)
-    const [newDL, setNewDL] = useState(Date(task.deadline))
+    const [newDL, setNewDL] = useState(new Date(task.deadline))
     const [newPrio, setNewPrio] = useState(task.priority)
 
     const handleTitleChange = (event) => {
@@ -369,10 +369,10 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     return (
         <div className='card'>
             <div className='cardTop'>
-                <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => setNewTitle('')}/>
+                <input className='inputTitle' value={newTitle} onChange={handleTitleChange} />
             </div>
                 <div className='cardBottom'>
-                    <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => setNewDesc('')}/>
+                    <input className='input' value={newDesc} onChange={handleDescChange} />
                         <div className='inputLine'>
                             <div className='textBeforeInput'>Choose deadline: </div>
                             <input className='input inputAfterText' type='date' value={newDL} onChange={handleDLChange} />
@@ -504,10 +504,10 @@ const NewTaskCard = ({topicToShow, tasks, setTasks}) => {
     return (
       <div className='card newCard'>
         <div className='cardTop'>
-          <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => { if (newTitle==='Enter new task title'){setNewTitle('')}}}/>
+          <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onBlur={() => { if (newTitle===''){setNewTitle('Enter new task title')}}} onFocus={() => { if (newTitle==='Enter new task title'){setNewTitle('')}}}/>
         </div>
         <div className='cardBottom'>
-          <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
+          <input className='input' value={newDesc} onChange={handleDescChange} onBlur={() => { if (newDesc===''){setNewDesc('Enter description')}}} onFocus={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
           <div className='inputLine'>
             <div className='chooseDeadLineText'>Choose deadline: </div>
             <input className='input inputAfterText' type='date' value={newDL} onChange={handleDLChange} />

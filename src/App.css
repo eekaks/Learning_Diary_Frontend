@@ -116,6 +116,7 @@ body {
 .warningText {
 	font-weight: bold;
 	padding-top: 4rem;
+	padding-left: 2rem;
 }
 
 .bookButton {

@@ -40,7 +40,7 @@ const NewTopicCard = ({setTopics, topics}) => {
     {
       window.alert('Enter a description')
     }
-    else if (newEstimate === 'Enter estimated time to master')
+    else if (newEstimate === 'Enter days to master')
     {
       window.alert('Enter days to master')
     }
@@ -78,12 +78,12 @@ const NewTopicCard = ({setTopics, topics}) => {
   return (
     <div className='card newCard'>
       <div className='cardTop'>
-        <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => { if (newTitle==='Enter new topic title'){setNewTitle('')}}}/>
+        <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onBlur={() => { if (newTitle==='') {setNewTitle('Enter new topic title')}}} onFocus={() => { if (newTitle==='Enter new topic title'){setNewTitle('')}}} />
       </div>
       <div className='cardBottom'>
-        <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
-        <input className='input' value={newEstimate} onChange={handleEstimateChange} onClick={() => { if (newEstimate==='Enter days to master'){setNewEstimate('')}}}/>
-        <input className='input' value={newSource} onChange={handleSourceChange} onClick={() => { if (newSource==='Enter sources'){setNewSource('')}}}/>
+        <input className='input' value={newDesc} onChange={handleDescChange} onBlur={() => { if (newDesc==='') {setNewDesc('Enter description')}}} onFocus={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
+        <input className='input' value={newEstimate} onChange={handleEstimateChange} onBlur={() => { if (newEstimate==='') {setNewEstimate('Enter days to master')}}} onFocus={() => { if (newEstimate==='Enter days to master'){setNewEstimate('')}}}/>
+        <input className='input' value={newSource} onChange={handleSourceChange} onBlur={() => { if (newSource==='') {setNewSource('Enter sources')}}} onFocus={() => { if (newSource==='Enter sources'){setNewSource('')}}}/>
         <i className='fa-solid fa-floppy-disk fa-2xl' onClick={handleSaveClick}></i>
 
       </div>
@@ -334,17 +334,17 @@ const ExampleTopicCard = ({topic, exampleTopics, setExampleTopics, handleCardCli
     return (
       <div className='card' >
         <div className='cardTop'>
-          <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => setNewTitle('')}/>
+          <input className='inputTitle' value={newTitle} onChange={handleTitleChange} />
         </div>
         <div className='cardBottom'>
-          <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => setNewDesc('')}/>
+          <input className='input' value={newDesc} onChange={handleDescChange} />
             <div className='inputLine'>
               <div className='textBeforeInput'>Days to master: </div>
-              <input className='input inputAfterText' value={newEstimate} onChange={handleEstimateChange} onClick={() => setNewEstimate('')}/>
+              <input className='input inputAfterText' value={newEstimate} onChange={handleEstimateChange} />
             </div>
             <div className='inputLine'>
               <div className='textBeforeInput'>Sources: </div>
-              <input className='input inputAfterText' value={newSource} onChange={handleSourceChange} onClick={() => setNewSource('')}/>
+              <input className='input inputAfterText' value={newSource} onChange={handleSourceChange} />
             </div>
         </div>
         <i className="fa-solid fa-pen-to-square fa-2xl topicEdit" onClick={(e) => handleExampleEditClick(e)}></i>
@@ -435,7 +435,7 @@ const ExampleNewTopicCard = ({setExampleTopics, exampleTopics}) => {
     {
       window.alert('Enter a description')
     }
-    else if (newEstimate === 'Enter estimated time to master')
+    else if (newEstimate === 'Enter days to master')
     {
       window.alert('Enter days to master')
     }
@@ -472,12 +472,12 @@ const ExampleNewTopicCard = ({setExampleTopics, exampleTopics}) => {
   return (
     <div className='card newCard'>
       <div className='cardTop'>
-        <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onClick={() => { if (newTitle==='Enter new topic title'){setNewTitle('')}}}/>
+        <input className='inputTitle' value={newTitle} onChange={handleTitleChange} onBlur={() => { if (newTitle==='') {setNewTitle('Enter new topic title')}}} onFocus={() => { if (newTitle==='Enter new topic title'){setNewTitle('')}}} />
       </div>
       <div className='cardBottom'>
-        <input className='input' value={newDesc} onChange={handleDescChange} onClick={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
-        <input className='input' value={newEstimate} onChange={handleEstimateChange} onClick={() => { if (newEstimate==='Enter days to master'){setNewEstimate('')}}}/>
-        <input className='input' value={newSource} onChange={handleSourceChange} onClick={() => { if (newSource==='Enter sources'){setNewSource('')}}}/>
+        <input className='input' value={newDesc} onChange={handleDescChange} onBlur={() => { if (newDesc==='') {setNewDesc('Enter description')}}} onFocus={() => { if (newDesc==='Enter description'){setNewDesc('')}}}/>
+        <input className='input' value={newEstimate} onChange={handleEstimateChange} onBlur={() => { if (newEstimate==='') {setNewEstimate('Enter days to master')}}} onFocus={() => { if (newEstimate==='Enter days to master'){setNewEstimate('')}}}/>
+        <input className='input' value={newSource} onChange={handleSourceChange} onBlur={() => { if (newSource==='') {setNewSource('Enter sources')}}} onFocus={() => { if (newSource==='Enter sources'){setNewSource('')}}}/>
         <i className='fa-solid fa-floppy-disk fa-2xl' onClick={handleExampleSaveClick}></i>
 
       </div>
