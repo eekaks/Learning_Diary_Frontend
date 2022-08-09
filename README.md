@@ -1,4 +1,4 @@
-This React app serves as a frontend for a Learning Diary. To use it, clone the repo, run 'npm install' in the directory and then 'npm start'. As such, it will only have example data for you to manipulate, a build version of the frontend is attached to https://github.com/eekaks/Learning_Diary_Full_Stack for full stack functionality.
+This React app serves as a frontend for a Learning Diary. To use it, clone the repo, run 'npm install' in the directory and then 'npm start'. As such, it will only have example data for you to manipulate and you cannot login or sign up, a build version of the frontend is attached to https://github.com/eekaks/Learning_Diary_Full_Stack for full stack functionality.
 
 
 # Getting Started with Create React App
