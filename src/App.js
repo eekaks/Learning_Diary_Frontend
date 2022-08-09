@@ -28,7 +28,7 @@ if (!user)
 	} else {
 		return (
 		<>
-			{exampleTasks.filter(task => task.topic === topicToShow.id && !task.done).map(task =>
+			{exampleTasks.filter(task => task.topic === topicToShow.id && !task.done).sort((a, b) => { return a.priority - b.priority}).map(task =>
 				<ExampleTaskCard key={task.id} task={task} exampleTasks={exampleTasks} setExampleTasks={setExampleTasks} topicToShow={topicToShow}/>)}
 			{exampleTasks.filter(task => task.topic === topicToShow.id && task.done).map(task =>
 				<ExampleFinishedTaskCard key={task.id} task={task} exampleTasks={exampleTasks} setExampleTasks={setExampleTasks}/>)}
